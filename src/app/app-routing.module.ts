@@ -23,14 +23,14 @@ const routes: Routes = [
     },
   },
   {
-    path: 'specialist',
+    path: 'comprador',
     loadChildren: () =>
-      import('./modules/specialist/specialist.module').then(
-        (m) => m.SpecialistModule
+      import('./modules/comprador/comprador.module').then(
+        (m) => m.CompradorModule
       ),
     canActivate: [UserTypeGuardService],
     data: {
-      expectedType: UserProfiles.specialist,
+      expectedType: UserProfiles.comprador,
     },
   },
   {

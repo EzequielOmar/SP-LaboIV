@@ -11,9 +11,10 @@ import { HomeComponent } from './pages/home/home.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedComponentsModule } from './modules/shared-components/shared-components.module';
+import { UserNameDirective } from './directives/user-name.directive';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ErrorComponent],
+  declarations: [AppComponent, HomeComponent, ErrorComponent, UserNameDirective],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
     BrowserModule,

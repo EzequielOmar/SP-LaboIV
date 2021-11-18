@@ -26,9 +26,6 @@ export class HomeComponent implements OnDestroy {
     //this.sub = this.Auth.authUserObservable.subscribe((u) => (this.user = u));
     this.sub = this.Auth.authUserObservable.subscribe((u) => {
       this.user = u;
-      setInterval(() => {
-        console.log(this.user);
-      }, 3000);
     });
     config.interval = 3000;
     config.wrap = true;
@@ -50,12 +47,8 @@ export class HomeComponent implements OnDestroy {
     this.router.navigate(['/auth/login']);
   }
 
-  goToSignClient() {
-    this.router.navigate(['/auth/signup/client']);
-  }
-
-  goToSignPro() {
-    this.router.navigate(['/auth/signup/specialist']);
+  goToSignUp() {
+    this.router.navigate(['/auth/signup']);
   }
 
   logOut() {

@@ -1,14 +1,5 @@
 {
-  "targets": {
-    "clinica-virtual-a83f8": {
-      "hosting": {
-        "clinica": [
-          "clinica-virtual-a83f8"
-        ]
-      }
-    }
-  },
   "projects": {
-    "default": "clinica-virtual-a83f8"
+    "default": "sp-laboiv"
   }
 }

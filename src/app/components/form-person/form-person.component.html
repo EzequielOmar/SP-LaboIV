@@ -1,40 +1,4 @@
 <div *ngIf="person" [formGroup]="person">
-  <div class="row">
-    <!--Nombre-->
-    <div class="col-md-6">
-      <label for="nombre">Nombre</label>
-      <input pattern="[a-zA-Z ]*" minlength=2 maxlength=25 formControlName="nombre" type="text" class="form-control"
-        placeholder="Nombre/s" value="" required>
-      <!--Errores-->
-      <div *ngIf="person.controls['nombre'].invalid && (sended || person.controls['nombre'].touched)">
-        <div *ngIf="person.controls['nombre'].errors?.required then reqError">
-        </div>
-        <div *ngIf="person.controls['nombre'].errors?.pattern then patError">
-        </div>
-        <div *ngIf="person.controls['nombre'].errors?.minlength then minError">
-        </div>
-        <div *ngIf="person.controls['nombre'].errors?.maxlength then minError">
-        </div>
-      </div>
-    </div>
-    <!--Apellido-->
-    <div class="col-md-6">
-      <label for="apellido">Apellido</label>
-      <input pattern="[a-zA-Z ]*" minlength=2 maxlength=25 formControlName="apellido" type="text" class="form-control"
-        placeholder="Apellido/s" value="" required>
-      <!--Errores-->
-      <div *ngIf="person.controls['apellido'].invalid &&  (sended || person.controls['apellido'].touched)">
-        <div *ngIf="person.controls['apellido'].errors?.required then reqError">
-        </div>
-        <div *ngIf="person.controls['apellido'].errors?.pattern then patError">
-        </div>
-        <div *ngIf="person.controls['apellido'].errors?.minlength then minError">
-        </div>
-        <div *ngIf="person.controls['apellido'].errors?.maxlength then minError">
-        </div>
-      </div>
-    </div>
-  </div>
   <!--Email-->
   <div class="col">
     <label for="mail">Email</label>
@@ -82,50 +46,16 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <!--fecha nacimiento-->
-    <div class="col-6">
-      <label for="f_nac">Fecha de nacimiento</label>
-      <div class="input-group date">
-        <input [minDate]="getMinDate()" [maxDate]="getMaxDate()" formControlName="f_nac" required class="form-control"
-          placeholder="yyyy-mm-dd" type="text" name="dp" ngbDatepicker #dp="ngbDatepicker">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary p-1" (click)="dp.toggle()" type="button">
-            <i-feather name="calendar"></i-feather>
-          </button>
-        </div>
-      </div>
-      <div
-        *ngIf="person.controls['f_nac'].errors?.required && (sended || person.controls['f_nac'].touched) then reqError">
-      </div>
-      <div
-        *ngIf="person.controls['f_nac'].errors?.ngbDate.invalid && (sended || person.controls['f_nac'].touched) then patError">
-      </div>
-      <div class="invalid-feedback d-block" style="width: 100%;"
-        *ngIf="person.controls['f_nac'].errors?.ngbDate.minDate && (sended || person.controls['f_nac'].touched)">
-        *Lo siento, la edad ingresada es muy alta*
-      </div>
-      <div class="invalid-feedback d-block" style="width: 100%;"
-        *ngIf="person.controls['f_nac'].errors?.ngbDate.maxDate && (sended || person.controls['f_nac'].touched)">
-        *Lo siento, tienes que ser mayor de 18 años para ingresar*
-      </div>
-    </div>
-    <!--Dni-->
-    <div class="col-6">
-      <label for="dni">Nro. de DNI</label>
-      <input pattern="[0-9]*" minlength=7 maxlength=10 formControlName="dni" required name="dni" type="edni"
-        class="form-control" placeholder="Nro. de dni">
-      <!--Errores-->
-      <div *ngIf="person.controls['dni'].invalid &&  (sended || person.controls['dni'].touched)">
-        <div *ngIf="person.controls['dni'].errors?.required then reqError">
-        </div>
-        <div *ngIf="person.controls['dni'].errors?.pattern then patError">
-        </div>
-        <div *ngIf="person.controls['dni'].errors?.minlength then minError">
-        </div>
-        <div *ngIf="person.controls['dni'].errors?.maxlength then minError">
-        </div>
-      </div>
+  <!--Imágen-->
+  <div class="col-md-6">
+    <label style="width: 100%;" for="portada">Imágen/es de perfil</label>
+    <label style="width: 100%;" class="image-upload-container">
+      <input (input)="getImage($event)" #imageInput class="file-input form-control" type="file"
+        accept=".jpeg,.jpg,.png,.svg" multiple="multiple">
+    </label>
+    <!--Errores-->
+    <div class="invalid-feedback d-block" style="width: 100%;" *ngIf="files.length < 1 && sended ">
+      *Es necesario ingresar al menos una imágen para registrarse*
     </div>
   </div>
 </div>

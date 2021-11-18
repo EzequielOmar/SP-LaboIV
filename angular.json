@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "clinica": {
+    "SP-LaboIV": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -67,10 +67,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "clinica:build:production"
+              "browserTarget": "SP-LaboIV:build:production"
             },
             "development": {
-              "browserTarget": "clinica:build:development"
+              "browserTarget": "SP-LaboIV:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "clinica:build"
+            "browserTarget": "SP-LaboIV:build"
           }
         },
         "test": {
@@ -99,13 +99,13 @@
           "options": {
             "prerender": false,
             "ssr": false,
-            "browserTarget": "clinica:build:production",
-            "firebaseProject": "clinica-virtual-a83f8",
-            "firebaseHostingSite": "clinica-virtual-a83f8"
+            "browserTarget": "SP-LaboIV:build:production",
+            "firebaseProject": "SP-LaboIV-virtual-a83f8",
+            "firebaseHostingSite": "SP-LaboIV-virtual-a83f8"
           }
         }
       }
     }
   },
-  "defaultProject": "clinica"
+  "defaultProject": "SP-LaboIV"
 }

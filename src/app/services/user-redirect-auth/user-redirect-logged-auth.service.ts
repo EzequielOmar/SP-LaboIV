@@ -21,14 +21,11 @@ export class UserRedirectLogguedGuardService implements CanActivate {
                 this.router.navigate(['/admin/']);
                 res(false);
                 break;
-              case UserProfiles.specialist:
-                this.router.navigate(['/specialist/']);
-                break;
-              case UserProfiles.admin:
-                this.router.navigate(['/pacient/']);
+              case UserProfiles.comprador:
+                this.router.navigate(['/comprador/']);
                 break;
             }
-          });
+          })
       });
     });
   };

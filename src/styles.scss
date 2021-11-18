@@ -16,12 +16,6 @@
 @import "../node_modules/bootstrap/scss/bootstrap";
 @import "../node_modules/bootstrap/scss/variables";
 
-/*Colors
-$primary: $primary;
-$danger: $danger;
-$gray: $gray-700;
-*/
-
 /*General*/
 
 html,
@@ -35,11 +29,7 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.dogtor {
-  background: url("assets/dogtor.jpg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
+.fullScreen {
   width: 100%;
   height: 100vh;
 }

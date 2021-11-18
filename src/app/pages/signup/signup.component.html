@@ -1,0 +1,65 @@
+<div class="fullScreen d-flex justify-content-center">
+  <div class="container row justify-content-center align-items-center">
+    <form class="needs-validation col-md-8 text-center" [formGroup]="user" (ngSubmit)="send()">
+      <div class="row m-3">
+        <legend>Completá el formulario</legend>
+        <span>Conocé otra forma de estudiar.</span>
+      </div>
+      <!--Error Messagge-->
+      <div *ngIf="error then errorSpan"></div>
+      <app-form-person (filesSelected)="handleFileSelect($event)" [files]="files" [pass]="pass" [person]="user"
+        [sended]="sended">
+      </app-form-person>
+      <div class="row">
+        <!--Tipo Usuario-->
+        <label class="form-check-label" for="tipo">Registrarse como:</label>
+        <div class="row">
+          <div class="form-check form-check-inline d-flex align-items-baseline">
+            <label class="form-check-label text-muted col-8" for="Comprador">Comprador</label>
+            <input formControlName="tipo" class="form-check-input" type="radio" value="2">
+          </div>
+          <div class="form-check form-check-inline d-flex align-items-baseline">
+            <label class="form-check-label text-muted col-8" for="Vendedor">Vendedor</label>
+            <input formControlName="tipo" class="form-check-input" type="radio" value="3">
+          </div>
+          <div *ngIf="user.controls['tipo'].errors && sended then reqError"></div>
+        </div>
+      </div>
+      <!--send-->
+      <div class="row">
+        <div class="col-6">
+          <button (click)="cancel()" type="button" class="btn btn-secondary px-5 link py-2 my-3 ">Cancelar</button>
+        </div>
+        <div class="col-6" *ngIf="!spinner else loading">
+          <button type="submit" class="btn btn-primary px-5 link py-2 my-3">Enviar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!--Templates-->
+<ng-template #reqError>
+  <div class="invalid-feedback d-block" style="width: 100%;">
+    *Este campo es obligatorio*
+  </div>
+</ng-template>
+<!--Loading-->
+<ng-template #loading>
+  <div class="col-6">
+    <button class="btn btn-primary px-4 link py-2 my-3" type="button" disabled>
+      <span class="spinner-border spinner-border-sm mx-2" role="status" aria-hidden="true"></span>
+      <span class="sr-only">Procesando...</span>
+    </button>
+  </div>
+</ng-template>
+<!--Error-->
+<ng-template #errorSpan>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>Algo ha salido mal.</strong>
+    {{error}}
+    <button (click)="error=''" class="m-0" type="button" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</ng-template>

@@ -2,10 +2,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
 import { Observable, Subscription } from 'rxjs';
-import { events } from 'src/app/interfaces/log';
 import { User, UserProfiles } from 'src/app/interfaces/user';
-import { environment } from 'src/environments/environment';
-import { LogService } from '../log/log.service';
 import { UserService } from '../user/user.service';
 import { Validator, whiteList } from './Validators';
 
@@ -18,8 +15,7 @@ export class AuthService implements OnDestroy {
 
   constructor(
     private angularFireAuth: AngularFireAuth,
-    private userDb: UserService,
-    private log: LogService
+    private userDb: UserService
   ) {
     this.listenUser();
   }
@@ -46,9 +42,15 @@ export class AuthService implements OnDestroy {
   signIn = async (email: string, password: string) =>
     await this.angularFireAuth
       .signInWithEmailAndPassword(email, password)
-      .then(async (res) => {
+      .then(
+        /*
+        bypass de restringir acceso a mails no verificados
+        async (res) => {
         await this.handleLogin(res).then(() => res);
-      })
+      }
+      */
+        (res) => res
+      )
       .catch((error) => {
         if (error.code === 'auth/user-disabled')
           throw new Error('El usuario ha sido deshabilitado.');
@@ -71,70 +73,16 @@ export class AuthService implements OnDestroy {
         throw error;
       });
 
-  signUpOnOtherThread = async (user: User, password: string) => {
-    let secondaryApp = firebase.initializeApp(
-      environment.firebase,
-      'secondary'
-    );
-    return await secondaryApp
-      .auth()
-      .createUserWithEmailAndPassword(user.mail, password)
-      .then(async (res) => {
-        secondaryApp.auth().currentUser?.updateProfile({
-          displayName: user.apellido + ', ' + user.nombre,
-          photoURL: user.img_urls[0] ?? '',
-        });
-        return await secondaryApp
-          .auth()
-          .currentUser?.sendEmailVerification()
-          .then(() => {
-            secondaryApp
-              .auth()
-              .signOut()
-              .then(() => {
-                secondaryApp.delete();
-              });
-            return res;
-          });
-      })
-      .catch((error) => {
-        if (error.code === 'auth/operation-not-allowed')
-          throw new Error(
-            'Lo siento, hubo un error interno. Vuelva a intentarlo en otro momento.'
-          );
-        throw error;
-      });
-  };
-
-  passRecovery = async (email: string) => {
-    this.angularFireAuth
-      .sendPasswordResetEmail(email)
-      .catch(() => new Error('Email incorrecto.'));
-  };
-
   signOut = async (uid: string, tipo: number) => {
-    await this.angularFireAuth.signOut().then(() => {
-      this.log.saveEvent(uid, events.logOut, tipo);
-    });
+    await this.angularFireAuth.signOut();
   };
 
   ngOnDestroy() {
     this.sub?.unsubscribe();
   }
 
-  manageUserData = async (user: User, res: any /*, files: File[]*/) => {
-    await Promise.all([
-      await this.userDb.writeUser(res.user?.uid ?? '', user),
-      await this.log.saveEvent(res.user?.uid ?? '', events.newUser, user.tipo),
-    ]);
-  };
-
-  updateAuthUserProfile(user: User) {
-    firebase.auth().currentUser?.updateProfile({
-      displayName: user.apellido + ', ' + user.nombre,
-      photoURL: user.img_urls[0] ?? '',
-    });
-  }
+  manageUserData = async (user: User, res: any) =>
+    await this.userDb.writeUser(res.user?.uid ?? '', user);
 
   private listenUser() {
     this.sub = this.angularFireAuth.authState.subscribe(async (authUser) => {
@@ -164,11 +112,6 @@ export class AuthService implements OnDestroy {
     await this.userDb.getUser(res.user?.uid ?? '').then((user: any) => {
       //check user not deleted
       if (user.eliminado != false) throw new Error('El usuario no existe.');
-      //check admin/specialist validation
-      if (user.tipo === UserProfiles.specialist && !user.verificado)
-        throw new Error('Tu perfil no ha sido aprobado aún.');
-      //save log
-      this.log.saveEvent(res.user?.uid ?? '', events.logIn, user.tipo);
     });
   };
 

@@ -4,12 +4,12 @@
 
 export const environment = {
   firebase: {
-    projectId: 'clinica-virtual-a83f8',
-    appId: '1:92414278747:web:3a225e18697ecc2d9c537e',
-    storageBucket: 'clinica-virtual-a83f8.appspot.com',
-    apiKey: 'AIzaSyCYOo7G_10bUbS2yk2F1di9BRE4nvylLsg',
-    authDomain: 'clinica-virtual-a83f8.firebaseapp.com',
-    messagingSenderId: '92414278747',
+    apiKey: "AIzaSyC2W_l_nFzkjnsC6yZYt_Wo53gc1vjOsV4",
+    authDomain: "sp-laboiv.firebaseapp.com",
+    projectId: "sp-laboiv",
+    storageBucket: "sp-laboiv.appspot.com",
+    messagingSenderId: "751310530869",
+    appId: "1:751310530869:web:7d9cf6cd73fc58b871847c"
   },
   production: false,
 };

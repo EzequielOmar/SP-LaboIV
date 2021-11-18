@@ -6,7 +6,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['../././../pages/signup-client/signup-client.component.scss'],
+  styleUrls: ['../././../pages/signup/signup.component.scss'],
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
@@ -37,13 +37,13 @@ export class LoginComponent implements OnInit {
         this.form.controls['mail'].setValue('admin@admin.com');
         this.form.controls['password'].setValue('admin1');
         break;
-      case 'specialist':
-        this.form.controls['mail'].setValue('specialist@specialist.com');
-        this.form.controls['password'].setValue('specialist');
+      case 'comprador':
+        this.form.controls['mail'].setValue('comprador@comprador.com');
+        this.form.controls['password'].setValue('comprador');
         break;
-      case 'tester':
-        this.form.controls['mail'].setValue('tester@tester.com');
-        this.form.controls['password'].setValue('tester');
+      case 'vendedor':
+        this.form.controls['mail'].setValue('vendedor@vendedor.com');
+        this.form.controls['password'].setValue('vendedor');
         break;
     }
   }
@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
           this.form.controls['password'].value
         )
         .then(() => {
-          this.router.navigate(['/']);
+          this.cancel();
         })
         .catch((e) => {
           this.error = e.message;
