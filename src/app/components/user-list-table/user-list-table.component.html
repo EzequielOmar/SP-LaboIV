@@ -1,0 +1,8 @@
+
+<ul class="list-group mb-3">
+  <li (click)="selectUser(u)" *ngFor="let u of users"
+    class="list-group-item d-flex justify-content-between align-items-center lh-condensed">
+      <img class="w-25" src="{{u.data.img_urls[0]}}">
+    <span class="text-muted">{{u.data.mail}}</span>
+  </li>
+</ul>

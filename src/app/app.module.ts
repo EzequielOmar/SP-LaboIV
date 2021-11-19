@@ -14,7 +14,12 @@ import { SharedComponentsModule } from './modules/shared-components/shared-compo
 import { UserNameDirective } from './directives/user-name.directive';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ErrorComponent, UserNameDirective],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    ErrorComponent,
+    UserNameDirective,
+  ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
     BrowserModule,

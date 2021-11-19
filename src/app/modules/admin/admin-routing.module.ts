@@ -1,30 +1,31 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminDashboardComponent } from 'src/app/pages/admin/admin-dashboard/admin-dashboard.component';
+import { CreateCryptoComponent } from 'src/app/pages/admin/create-crypto/create-crypto.component';
+import { SellerPanelComponent } from 'src/app/pages/admin/seller-panel/seller-panel.component';
+import { UserListComponent } from 'src/app/pages/admin/user-list/user-list.component';
 
 const routes: Routes = [
   {
     path: 'dashboard',
     component: AdminDashboardComponent,
-   /*
     children: [
       {
         path: '',
-        component: SpecialistPanelComponent,
+        component: CreateCryptoComponent,
         outlet: 'adminMenu',
       },
       {
-        path: 'user',
-        component: UserPanelComponent,
+        path: 'vendedores',
+        component: SellerPanelComponent,
         outlet: 'adminMenu',
       },
       {
-        path: 'admin',
-        component: AdminPanelComponent,
+        path: 'usuarios',
+        component: UserListComponent,
         outlet: 'adminMenu',
       },
     ],
-    */
   },
   {
     path: '',

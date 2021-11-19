@@ -1,0 +1,135 @@
+<div class="container row justify-content-center align-items-center">
+  <form class="needs-validation col-10 text-center" [formGroup]="currency" (ngSubmit)="send()">
+    <div class="row m-3">
+      <legend>¡Crea una nueva cryptomoneda!</legend>
+    </div>
+    <!--Error Messagge-->
+    <div *ngIf="error then errorSpan"></div>
+    <div *ngIf="success" class="alert alert-success" role="alert">
+      ¡Creada correctamente!
+    </div>
+    <!--Nombre-->
+    <div class="col">
+      <label for="nombre">Nombre</label>
+      <input pattern="[a-zA-Z ]*" minlength=3 maxlength=40 formControlName="nombre" required name="nombre" type="name"
+        class="form-control" placeholder="etherium...">
+      <!--Errores-->
+      <div *ngIf="currency.controls['nombre'].invalid &&  (sended || currency.controls['nombre'].touched)">
+        <div *ngIf="currency.controls['nombre'].errors?.required then reqError">
+        </div>
+        <div *ngIf="currency.controls['nombre'].errors?.pattern then patError">
+        </div>
+        <div *ngIf="currency.controls['nombre'].errors?.minlength then minError">
+        </div>
+        <div *ngIf="currency.controls['nombre'].errors?.maxlength then minError">
+        </div>
+      </div>
+    </div>
+
+    <!--costoActual-->
+    <div class="col">
+      <label for="costoActual">Costo Actual</label>
+      <input pattern="(?=.+)(?:[1-9]\d*|0)?(?:\.\d+)?" minlength=0 formControlName="costoActual" required
+        name="costoActual" type="float" class="form-control">
+      <div
+        *ngIf="currency.controls['costoActual'].errors?.required && (sended || currency.controls['costoActual'].touched) then reqError">
+      </div>
+      <div *ngIf="currency.controls['costoActual'].errors?.pattern then patError">
+      </div>
+      <div
+        *ngIf="currency.controls['costoActual'].errors?.minlength && (sended || currency.controls['costoActual'].touched) then minError">
+      </div>
+      <div
+        *ngIf="currency.controls['costoActual'].errors?.maxlength &&  (sended || currency.controls['costoActual'].touched) then maxError">
+      </div>
+    </div>
+
+
+    <!--comision-->
+    <div class="col">
+      <label for="comision">Comisión (%)</label>
+      <input pattern="[0-9]*" minlength=0 formControlName="comision" required name="comision" type="float"
+        class="form-control">
+      <div
+        *ngIf="currency.controls['comision'].errors?.required && (sended || currency.controls['comision'].touched) then reqError">
+      </div>
+      <div *ngIf="currency.controls['comision'].errors?.pattern then patError">
+      </div>
+      <div
+        *ngIf="currency.controls['comision'].errors?.minlength && (sended || currency.controls['comision'].touched) then minError">
+      </div>
+      <div
+        *ngIf="currency.controls['comision'].errors?.maxlength &&  (sended || currency.controls['comision'].touched) then maxError">
+      </div>
+    </div>
+
+    <!--año-->
+    <div class="col">
+      <label for="año">Año</label>
+      <input pattern="[0-9]*" minlength=4 maxlength="4" placeholder="aaaa" formControlName="año" required name="año"
+        type="float" class="form-control">
+      <div
+        *ngIf="currency.controls['año'].errors?.required && (sended || currency.controls['año'].touched) then reqError">
+      </div>
+      <div *ngIf="currency.controls['año'].errors?.pattern then patError">
+      </div>
+      <div
+        *ngIf="currency.controls['año'].errors?.minlength && (sended || currency.controls['año'].touched) then minError">
+      </div>
+      <div
+        *ngIf="currency.controls['año'].errors?.maxlength &&  (sended || currency.controls['año'].touched) then maxError">
+      </div>
+    </div>
+
+    <!--send-->
+    <div class="row">
+      <div class="col-6" *ngIf="!spinner else loading">
+        <button type="submit" class="btn btn-primary px-5 link py-2 my-3">Crear</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!--Templates-->
+<ng-template #reqError>
+  <div class="invalid-feedback d-block" style="width: 100%;">
+    *Este campo es obligatorio*
+  </div>
+</ng-template>
+<!--ERROR -> Patron incorrecto-->
+<ng-template #patError>
+  <div class="invalid-feedback d-block" style="width: 100%;">
+    *El formato del campo es incorrecto*
+  </div>
+</ng-template>
+<!--ERROR -> minimo-->
+<ng-template #minError>
+  <div class="invalid-feedback d-block" style="width: 100%;">
+    *El valor de este campo es muy corto/bajo*
+  </div>
+</ng-template>
+<!--ERROR -> maximo-->
+<ng-template #maxError>
+  <div class="invalid-feedback d-block" style="width: 100%;">
+    *El valor de este campo es muy largo/alto*
+  </div>
+</ng-template>
+<!--Loading-->
+<ng-template #loading>
+  <div class="col-6">
+    <button class="btn btn-primary px-4 link py-2 my-3" type="button" disabled>
+      <span class="spinner-border spinner-border-sm mx-2" role="status" aria-hidden="true"></span>
+      <span class="sr-only">Procesando...</span>
+    </button>
+  </div>
+</ng-template>
+<!--Error-->
+<ng-template #errorSpan>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>Algo ha salido mal.</strong>
+    {{error}}
+    <button (click)="error=''" class="m-0" type="button" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</ng-template>

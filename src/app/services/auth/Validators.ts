@@ -1,5 +1,6 @@
 export class Validator {
   static email = (email: string): string => {
+    return email;
     const validEmail =
       email.endsWith('@gmail.com') ||
       email.endsWith('@hotmail.com') ||

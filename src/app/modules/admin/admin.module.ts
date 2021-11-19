@@ -6,10 +6,20 @@ import { AdminDashboardComponent } from 'src/app/pages/admin/admin-dashboard/adm
 import { IconsModule } from '../feather-icons/feather.module';
 import { SharedComponentsModule } from '../shared-components/shared-components.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CreateCryptoComponent } from '../../pages/admin/create-crypto/create-crypto.component';
+import { SellerPanelComponent } from '../../pages/admin/seller-panel/seller-panel.component';
+import { UserListComponent } from '../../pages/admin/user-list/user-list.component';
+import { FilterUserPipe } from 'src/app/pipes/filer-user/filter-user.pipe';
 //modules
 
 @NgModule({
-  declarations: [AdminDashboardComponent],
+  declarations: [
+    AdminDashboardComponent,
+    CreateCryptoComponent,
+    SellerPanelComponent,
+    UserListComponent,
+    FilterUserPipe
+  ],
   imports: [
     CommonModule,
     AdminRoutingModule,

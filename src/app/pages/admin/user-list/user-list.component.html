@@ -1,0 +1,16 @@
+<h3 class="d-flex justify-content-between align-items-center mb-3">
+  <span class="text-muted">Usuarios</span>
+</h3>
+<app-user-list-table [users]="users|filterUser:filter" (selectedUser)="selectUser($event)"></app-user-list-table>
+<!--Tipo Usuario-->
+<label class="form-check-label" for="tipo">Registrarse como:</label>
+<div class="row">
+  <div class="form-check form-check-inline d-flex align-items-baseline">
+    <label class="form-check-label text-muted col-8" for="Comprador">Comprador</label>
+    <input (click)="filter=2" name="tipo" class="form-check-input" type="radio" value="2">
+  </div>
+  <div class="form-check form-check-inline d-flex align-items-baseline">
+    <label class="form-check-label text-muted col-8" for="Vendedor">Vendedor</label>
+    <input (click)="filter=3" name="tipo" class="form-check-input" type="radio" value="3">
+  </div>
+</div>

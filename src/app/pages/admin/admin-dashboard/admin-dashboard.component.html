@@ -1,14 +1,10 @@
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3">Admin</a>
+  <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3">Admin DashBoard</a>
   <button (click)="dropMenu=!dropMenu" class="navbar-toggler position-absolute d-md-none collapsed" type="button"
     data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
     aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <!--
-    <input #search [class.show]="dropMenu" class="form-control form-control-dark w-100 d-md-block" type="text"
-    placeholder="Search" aria-label="Search">
-  -->
   <ul [class.show]="dropMenu" class="navbar-nav px-3 d-md-block">
     <li class="nav-item text-nowrap">
       <a class="nav-link" (click)="signOut()">Salir</a>
@@ -25,21 +21,21 @@
             <a [class.active]="active === 0" (click)="setActive(0)" [routerLink]="[{ outlets: { adminMenu:['']}}]"
               class="nav-link active">
               <i-feather name="star"></i-feather>
-              Especialistas
+              Alta de Crypto
             </a>
           </li>
           <li class="nav-item">
-            <a [class.active]="active === 1" (click)="setActive(1)" [routerLink]="[{ outlets: { adminMenu:['user']}}]"
+            <a [class.active]="active === 1" (click)="setActive(1)" [routerLink]="[{ outlets: { adminMenu:['vendedores']}}]"
               class="nav-link">
               <i-feather name="users"></i-feather>
-              Pacientes
+              Vendedores
             </a>
           </li>
           <li class="nav-item">
-            <a [class.active]="active === 2" (click)="setActive(2)" [routerLink]="[{ outlets: { adminMenu:['admin']}}]"
+            <a [class.active]="active === 2" (click)="setActive(2)" [routerLink]="[{ outlets: { adminMenu:['usuarios']}}]"
               class="nav-link">
               <i-feather name="user-check"></i-feather>
-              Administradores
+              Usuarios
             </a>
           </li>
         </ul>

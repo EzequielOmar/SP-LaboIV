@@ -19,10 +19,8 @@ export class UserService {
       .then((doc: any) => doc.data() as User)
       .catch((err) => err);
 
-  getUsersByType(type: number) {
+  getUsers() {
     return this.db
       .getObserverDb(dbNames.users)
-      .where('tipo', '==', type)
-      .where ('eliminado', '==',false);
   }
 }
