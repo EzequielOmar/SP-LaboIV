@@ -23,6 +23,6 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   signOut() {
-    this.auth.signOut(this.user.uid, this.user.multiFactor.user.tipo);
+    this.auth.signOut();
   }
 }

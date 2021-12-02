@@ -63,7 +63,7 @@ export class SignupComponent implements OnInit {
             .handleFiles(user, res.user?.uid ?? '', this.files)
             .then(() => {
               this.auth.manageUserData(user, res).then(() => {
-                this.auth.signOut(res.user?.uid ?? '', user.tipo).then(() => {
+                this.auth.signOut().then(() => {
                   this.goToLogin();
                 });
               });

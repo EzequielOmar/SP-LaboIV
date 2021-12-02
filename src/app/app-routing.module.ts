@@ -23,6 +23,17 @@ const routes: Routes = [
     },
   },
   {
+    path: 'vendedor',
+    loadChildren: () =>
+      import('./modules/vendedor/vendedor.module').then(
+        (m) => m.VendedorModule
+      ),
+    canActivate: [UserTypeGuardService],
+    data: {
+      expectedType: UserProfiles.vendedor,
+    },
+  },
+  {
     path: 'comprador',
     loadChildren: () =>
       import('./modules/comprador/comprador.module').then(

@@ -52,6 +52,6 @@ export class HomeComponent implements OnDestroy {
   }
 
   logOut() {
-    this.Auth.signOut(this.user?.uid ?? '', this.user?.tipo ?? '');
+    this.Auth.signOut();
   }
 }

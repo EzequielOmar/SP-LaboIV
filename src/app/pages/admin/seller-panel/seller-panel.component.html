@@ -1,5 +1,15 @@
 <h3 class="d-flex justify-content-between align-items-center mb-3">
   <span class="text-muted">Vendedores</span>
 </h3>
-<app-user-list-table [users]="users | filterUser:tipo" (selectedUser)="selectUser($event)"></app-user-list-table>
-<app-user-detail *ngIf="selected" [user]="selected.data"></app-user-detail>
+<app-user-list-table [users]="users | filterUser:tipo" (userSelected)="selectUser($event)"></app-user-list-table>
+<div class="row">
+  <div class="col-6 text-center">
+    <app-user-detail *ngIf="selected" [user]="selected.data"></app-user-detail>
+  </div>
+  <div class="col-6 text-center mt-4" *ngIf="selected">
+    <button (click)="switchVerif()" type="button" class="btn btn-success"
+      *ngIf="!selected.data.verificado">Habilitar</button>
+    <button (click)="switchVerif()" type="button" class="btn btn-warning"
+      *ngIf="selected.data.verificado">Deshabilitar</button>
+  </div>
+</div>

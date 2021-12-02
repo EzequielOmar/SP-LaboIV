@@ -48,7 +48,7 @@
     <!--comision-->
     <div class="col">
       <label for="comision">Comisión (%)</label>
-      <input pattern="[0-9]*" minlength=0 formControlName="comision" required name="comision" type="float"
+      <input pattern="(?=.+)(?:[1-9]\d*|0)?(?:\.\d+)?" minlength=0 formControlName="comision" required name="comision" type="float"
         class="form-control">
       <div
         *ngIf="currency.controls['comision'].errors?.required && (sended || currency.controls['comision'].touched) then reqError">

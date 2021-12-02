@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand px-3" style="font-size: medium;">Clínica Virtual Professional</a>
+  <button (click)="dropMenu=!dropMenu" class="navbar-toggler p-1 mx-1" type="button" data-toggle="collapse"
+    data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+    aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div [class.show]="dropMenu" class="collapse navbar-collapse justify-content-end">
+    <div class="navbar-nav">
+      <a [class.active]="active === 2" (click)="setActive(2)" class="nav-link px-3" (click)="signOut()">Salir</a>
+    </div>
+  </div>
+</nav>
+<div class="row pt-5">
+  <div class="col-6 text-center">
+    <h4 class="mb-3">
+      Monedas Disponibles
+    </h4>
+    <span class="text-danger">**Seleccione la/s monedas que quiere ofrecer**</span>
+    <div class="col-10 offset-1">
+      <app-coin-list-table [coins]="coins | filterCoin:de:a" (coinSelected)="selectCoin($event)">
+      </app-coin-list-table>
+    </div>
+    <!--Tipo Usuario-->
+    <label class="form-check-label" for="tipo">Filtrar Por Comisión:</label>
+    <div class="row">
+      <div class="form-check form-check-inline d-flex align-items-baseline">
+        <label class="form-check-label text-muted col-8" for="Comprador">Mayor a 20%</label>
+        <input (click)="de=20;a=10000" name="tipo" class="form-check-input" type="radio">
+      </div>
+      <div class="form-check form-check-inline d-flex align-items-baseline">
+        <label class="form-check-label text-muted col-8" for="Vendedor">Entre 10% y 20%</label>
+        <input (click)="de=10;a=20" name="tipo" class="form-check-input" type="radio">
+      </div>
+      <div class="form-check form-check-inline d-flex align-items-baseline">
+        <label class="form-check-label text-muted col-8" for="Todos">Menor al 10%</label>
+        <input (click)="de=0;a=10" name="tipo" class="form-check-input" type="radio">
+      </div>
+      <div class="form-check form-check-inline d-flex align-items-baseline">
+        <label class="form-check-label text-muted col-8" for="Todos">Todas</label>
+        <input (click)="de=0;a=0" name="tipo" class="form-check-input" type="radio">
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+    <h4 class="mb-3">
+      Monedas Ofrecidas por Ud.
+    </h4>
+    <div class="col-10 offset-1">
+      <app-coin-list-table [coins]="coinsOffered">
+      </app-coin-list-table>
+    </div>
+    <div *ngIf="show">
+      <button (click)="saveChanges()" class="btn btn-success col-4">Guardar</button>
+    </div>
+  </div>
+</div>

@@ -27,7 +27,7 @@ export class AuthService implements OnDestroy {
   getCurrentUserType = async (uid: string): Promise<number | null> => {
     return await this.userDb
       .getUser(uid)
-      .then((dbUser) => dbUser.tipo)
+      .then((dbUser) => dbUser.data.tipo)
       .catch(() => null);
   };
 
@@ -73,7 +73,7 @@ export class AuthService implements OnDestroy {
         throw error;
       });
 
-  signOut = async (uid: string, tipo: number) => {
+  signOut = async () => {
     await this.angularFireAuth.signOut();
   };
 
@@ -89,7 +89,7 @@ export class AuthService implements OnDestroy {
       this.user = authUser;
       if (authUser)
         await this.userDb.getUser(authUser.uid ?? '').then((dbUser) => {
-          this.user.multiFactor.user.tipo = dbUser.tipo;
+          this.user.multiFactor.user.tipo = dbUser.data.tipo;
         });
     });
   }

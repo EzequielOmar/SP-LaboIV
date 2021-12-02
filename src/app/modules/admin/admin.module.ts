@@ -9,7 +9,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CreateCryptoComponent } from '../../pages/admin/create-crypto/create-crypto.component';
 import { SellerPanelComponent } from '../../pages/admin/seller-panel/seller-panel.component';
 import { UserListComponent } from '../../pages/admin/user-list/user-list.component';
-import { FilterUserPipe } from 'src/app/pipes/filer-user/filter-user.pipe';
 //modules
 
 @NgModule({
@@ -18,7 +17,6 @@ import { FilterUserPipe } from 'src/app/pipes/filer-user/filter-user.pipe';
     CreateCryptoComponent,
     SellerPanelComponent,
     UserListComponent,
-    FilterUserPipe
   ],
   imports: [
     CommonModule,

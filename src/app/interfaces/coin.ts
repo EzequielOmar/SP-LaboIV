@@ -2,7 +2,7 @@ export interface Coin {
   nombre: string;
   costoActual: string;
   comision: number;
-  año: number;
+  anio: number;
 }
 
 export type CoinId = { id: string; data: Coin };

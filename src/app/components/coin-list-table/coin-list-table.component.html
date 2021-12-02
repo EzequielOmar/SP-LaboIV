@@ -1,0 +1,9 @@
+<ul class="list-group mb-3">
+  <li (click)="selectCoin(c)" [class.active]="c===coinSelectedData" *ngFor="let c of coins"
+    class="list-group-item d-flex justify-content-between align-items-center lh-condensed">
+    <span class="text-muted">{{c.data.nombre}}</span>
+    <span class="text-muted">{{c.data.costoActual}}</span>
+    <span class="text-muted">{{c.data.comision}}</span>
+    <span class="text-muted">{{c.data.anio}}</span>
+  </li>
+</ul>

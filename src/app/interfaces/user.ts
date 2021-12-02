@@ -6,6 +6,7 @@ export interface User {
   creado: string;
   modificado: string;
   eliminado: string;
+  coins: string[];
 }
 
 export const UserProfiles = {

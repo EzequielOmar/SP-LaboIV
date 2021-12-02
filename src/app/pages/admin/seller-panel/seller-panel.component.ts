@@ -22,6 +22,13 @@ export class SellerPanelComponent implements OnInit {
     this.selected = user;
   }
 
+  switchVerif() {
+    if (this.selected) {
+      this.selected.data.verificado = !this.selected?.data.verificado;
+      this.userDb.writeUser(this.selected.id, this.selected.data);
+    }
+  }
+
   private getSpecialist() {
     this.userDb.getUsers().onSnapshot((snap) => {
       this.users = [];

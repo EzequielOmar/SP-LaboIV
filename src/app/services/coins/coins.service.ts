@@ -12,4 +12,12 @@ export class CoinsService {
   writeCoin = async (coin: Coin) => {
     await this.db.set(dbNames.coins, coin);
   };
+
+  getCoins() {
+    return this.db.getObserverDb(dbNames.coins);
+  }
+
+  getUserCoins(ids: string[]) {
+    return this.db.getObserverDb(dbNames.coins).where('__name__', 'in', ids);
+  }
 }

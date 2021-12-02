@@ -1,7 +1,7 @@
-<fieldset >
-  <legend>{{user.mail}}</legend>
+<fieldset>
+  <legend class="m-0">{{user.mail}}</legend>
   <img class="w-25" src="{{user.img_urls[0]}}">
-  <div class="row mt-5">
-    <label for="firstName">Verificado:{{user.verificado}}</label>
+  <div class="row mt-3">
+    <strong class="text-info"><span *ngIf="!user.verificado">No </span>Verificado</strong>
   </div>
 </fieldset>

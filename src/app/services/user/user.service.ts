@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { dbNames } from 'src/app/interfaces/dbNames';
-import { User } from 'src/app/interfaces/user';
+import { User, UserId } from 'src/app/interfaces/user';
 import { DbService } from '../db/db.service';
 
 @Injectable({
@@ -13,14 +13,15 @@ export class UserService {
     await this.db.setWithId(dbNames.users, uid, user);
   };
 
-  getUser = async (uid: string): Promise<User> =>
+  getUser = async (uid: string): Promise<UserId> =>
     await this.db
       .getDocOnce(dbNames.users, uid)
-      .then((doc: any) => doc.data() as User)
+      .then((doc: any) => {
+        return { id: doc.id, data: doc.data() as User } as UserId
+      })
       .catch((err) => err);
 
   getUsers() {
-    return this.db
-      .getObserverDb(dbNames.users)
+    return this.db.getObserverDb(dbNames.users);
   }
 }
